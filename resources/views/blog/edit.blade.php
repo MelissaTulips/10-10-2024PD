@@ -24,7 +24,7 @@
 <div class="w-4/5 m-auto pt-20">
     <form 
         action="/blog/{{ $post->slug }}"
-        method="POST"
+        method="PUT"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')

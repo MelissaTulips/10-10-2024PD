@@ -71,12 +71,22 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        $post = null;
-        if (is_numeric($slug) && (int)$slug == $slug) {
-            $post = Post::find($slug);
-        } else {
-            $post = Post::where('slug', $slug)->first();
-        }
+
+       
+    
+        return view('blog.show')
+        ->with('posts', $post = Post::where('slug', $slug)->first());
+
+
+
+
+        //crying- what is this: 
+
+        // if (is_numeric($slug) && (int)$slug == $slug) {
+        //     $post = Post::find($slug);
+        // } else {
+        //     $post = Post::where('slug', $slug)->first();
+        // }
 
     }
 
@@ -88,6 +98,20 @@ class PostsController extends Controller
      */
     public function edit($slug)
     {
+
+
+       
+
+        return view('blog.edit')
+        ->with('posts', $post = Post::where('slug', $slug)->first());
+
+
+        // return view('blog.edit');
+        // if (is_numeric($slug) && (int)$slug == $slug) {
+        //     $post = Post::find($slug);
+        // } else {
+        //     $post = Post::where('slug', $slug)->first();
+        // }
 
     }
 
@@ -131,4 +155,7 @@ class PostsController extends Controller
         return redirect('/blog')
             ->with('message', 'Your post has been deleted!');
     }
+
+
+
 }
