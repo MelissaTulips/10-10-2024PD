@@ -71,12 +71,8 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-
-       
-    
-        return view('blog.show')
-        ->with('posts', $post = Post::where('slug', $slug)->first());
-
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('blog.show', compact('post'));
 
 
 
@@ -99,14 +95,10 @@ class PostsController extends Controller
     public function edit($slug)
     {
 
-
-       
-
-        return view('blog.edit')
-        ->with('posts', $post = Post::where('slug', $slug)->first());
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('blog.edit', compact('post'));
 
 
-        // return view('blog.edit');
         // if (is_numeric($slug) && (int)$slug == $slug) {
         //     $post = Post::find($slug);
         // } else {
@@ -159,3 +151,6 @@ class PostsController extends Controller
 
 
 }
+
+
+
